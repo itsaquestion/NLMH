@@ -17,19 +17,26 @@ getNlPath = function(base.path = "") {
   nl.path
 }
 
+
+
+# start NetLogo with GUI
+startNL = function(nl.path,gui = TRUE) {
+
+  files = list.files(nl.path)
+  result = sapply(files, function(x) {
+    startsWith(x, "netlogo-") & endsWith(x, ".jar")
+  })
+  nl.jarname = files[as.vector(result)]
+  msg("Start NetLogo: ", nl.path)
+  NLStart(nl.path, nl.jarname = nl.jarname,gui = gui)
+}
+
 # start NetLogo with GUI
 startNLGui = function(nl.path) {
 
-  files = list.files(nl.path)
-  result = sapply(files,
-                  function(x) {
-                    startsWith(x, "netlogo-") &
-                      endsWith(x, ".jar")
-                  })
-  nl.jarname = files[as.vector(result)]
-  msg("Start NetLogo: ", nl.path)
-  NLStart(nl.path, nl.jarname = nl.jarname)
+  startNL(nl.path, gui = F)
 }
+
 
 exitNL = function() {
   msg("Quit")

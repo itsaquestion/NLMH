@@ -2,6 +2,32 @@ library(MyPlot)
 library(MyUtils)
 library(ggplot2)
 
+run("setup")
+
+run('marriage')
+
+run('updateCounters')
+
+run('tick') # 此时为 ticks==1
+
+run('ticks') == 1
+
+run('ageing')
+
+run('count turtles with [age = 1]')
+
+run('reproduction')
+
+run('count turtles with [age = 1]')
+
+
+
+
+
+# ========================
+# 以下为旧版内容
+# ========================
+
 # 固定
 run("setup")
 run("set fixPop? true")
@@ -99,3 +125,6 @@ mplot(
 # 结论：
 ## n对储蓄率没什么影响（可以直接从公式看到），n增加，稳态k和y都会降低
 ## 符合教科书结论
+
+
+# 

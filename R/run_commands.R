@@ -49,7 +49,7 @@ run.character = function(cmd, showCmd = T) {
 run.list = function(cmd.list) {
   ret = lapply(cmd.list, function(x) {
     run.character(x)
-  })
+  }) %>% unlist
   data.frame(cmd = cmd.list, result = ret)
 }
 
@@ -60,14 +60,12 @@ runTimes = function(cmd, times, printTime = F) {
     cmd.list = as.list(rep(cmd, times))
     #result = as.data.frame(Reduce(rbind,run(cmd.list)))
     result =
-        run("map [-> " %+% cmd %+% "] (list " %+% Reduce(paste, 1:times) %+% ")",
-            F)
+        run("map [-> " %+% cmd %+% "] (list " %+% Reduce(paste, 1:times) %+% ")", F)
     result = as.data.frame(Reduce(rbind, result))
     colnames(result) = NULL
     rownames(result) = 1:times
     result
-  }
-  )
+  })
   if (printTime) print(time)
   result
 }
